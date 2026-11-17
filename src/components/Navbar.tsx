@@ -78,7 +78,17 @@ function Navbar() {
             href="#contact"
             variant="outlined"
             color="primary"
-            sx={{ borderRadius: "8px", px: 2.5, py: 1 }}
+            sx={{
+              borderRadius: "8px",
+              px: 2.5,
+              py: 1,
+              color: "#B8C7DC",
+              borderColor: "#B8C7DC",
+              "&:hover": {
+                borderColor: "#FFFFFF",
+                backgroundColor: "rgba(184, 199, 220, 0.08)",
+              },
+            }}
           >
             Let's Talk
           </Button>

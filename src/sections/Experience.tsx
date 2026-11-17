@@ -57,7 +57,7 @@ function Experience() {
         <Box sx={{ mb: 8 }}>
           <Typography
             variant="overline"
-            color="primary"
+            color="#B8C7DC"
             sx={{
               fontWeight: 700,
               letterSpacing: 3,

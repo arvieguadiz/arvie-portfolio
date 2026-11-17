@@ -27,7 +27,7 @@ function Contact() {
           <Typography
             variant="overline"
             sx={{
-              color: "primary.main",
+              color: "#B8C7DC",
               fontWeight: 700,
               letterSpacing: "0.15em",
             }}

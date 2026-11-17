@@ -36,7 +36,7 @@ function Education() {
         <Box sx={{ mb: 7 }}>
           <Typography
             variant="overline"
-            color="primary"
+            color="#B8C7DC"
             sx={{
               fontWeight: 700,
               letterSpacing: 3,
