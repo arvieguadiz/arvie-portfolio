@@ -5,9 +5,9 @@ const theme = createTheme({
     mode: "dark",
 
     primary: {
-      main: "#5B8CFF",
+      main: "#3568D4",
       light: "#8EAEFF",
-      dark: "#3568D4",
+      dark: "#254FA8",
       contrastText: "#FFFFFF",
     },
 
@@ -86,9 +86,15 @@ const theme = createTheme({
         },
 
         contained: {
+          color: "#FFFFFF",
+
+          "&.MuiButton-colorPrimary": {
+            backgroundColor: "#3568D4",
+          },
+
           "&.MuiButton-colorPrimary:hover": {
-            backgroundColor: "#4778E8",
-            boxShadow: "0 0 24px rgba(91, 140, 255, 0.25)",
+            backgroundColor: "#254FA8",
+            boxShadow: "0 0 24px rgba(53, 104, 212, 0.25)",
           },
         },
       },
