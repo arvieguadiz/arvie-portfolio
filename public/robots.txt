@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arvie-portfolio.arvieguadiz.workers.dev/sitemap.xml
