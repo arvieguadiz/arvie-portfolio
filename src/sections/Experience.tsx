@@ -3,42 +3,64 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    role: "Full Stack Web Developer",
     company: "The Penbrothers International, Inc.",
     location: "Metro Manila, Philippines",
     period: "June 2022 — May 2026",
-    description:
-      "Developed and maintained full-stack web applications, contributing to both frontend experiences and backend systems.",
-    responsibilities: [
-      "Developed applications using React, Redux, Node.js, Express, TypeScript, Redis, and MySQL.",
-      "Collaborated with cross-functional teams to design and implement features that improved user experience and streamlined development.",
-      "Optimized backend queries and frontend components to improve application performance and responsiveness.",
-      "Built reusable Material UI components to help establish a consistent design system and improve development efficiency.",
-    ],
-    technologies: [
-      "React",
-      "Redux",
-      "TypeScript",
-      "Node.js",
-      "Express",
-      "Redis",
-      "MySQL",
-      "Material UI",
+    positions: [
+      {
+        role: "Mid-Level Full-Stack Developer",
+        period: "April 2024 — May 2026",
+        description:
+          "Transitioned into a full-stack development role, taking on broader responsibilities across frontend experiences and backend systems.",
+        responsibilities: [
+          "Developed and maintained full-stack web applications using React, Redux, Node.js, Express, TypeScript, Redis, and MySQL.",
+          "Collaborated with cross-functional teams to design and implement features that improved user experience and streamlined development.",
+          "Optimized backend queries and frontend components to improve application performance and responsiveness.",
+          "Built reusable Material UI components to help establish a consistent design system and improve development efficiency.",
+        ],
+        technologies: [
+          "React",
+          "Redux",
+          "TypeScript",
+          "Node.js",
+          "Express",
+          "Redis",
+          "MySQL",
+          "Material UI",
+        ],
+      },
+      {
+        role: "Junior Frontend Developer",
+        period: "June 2022 — March 2024",
+        description:
+          "Focused on building and maintaining frontend experiences while collaborating with the team to deliver application features.",
+        responsibilities: [
+          "Developed and maintained user interfaces using React and Redux.",
+          "Built reusable frontend components and implemented responsive layouts using Material UI.",
+          "Collaborated with backend developers and cross-functional teams to integrate frontend features with application services.",
+        ],
+        technologies: ["React", "Redux", "JavaScript", "Material UI", "CSS"],
+      },
     ],
   },
   {
-    role: "Junior Programmer",
     company: "New Media Services Pty. Ltd.",
     location: "Baguio City, Philippines",
     period: "August 2019 — September 2021",
-    description:
-      "Worked on the development and maintenance of web applications while collaborating with senior developers to improve application quality.",
-    responsibilities: [
-      "Developed and maintained web applications using JavaScript, Node.js, Express, React, and MySQL.",
-      "Collaborated with senior developers to identify bugs, troubleshoot issues, and optimize application performance.",
-      "Participated in code reviews and contributed to building reusable frontend components.",
+    positions: [
+      {
+        role: "Junior Programmer",
+        period: "August 2019 — September 2021",
+        description:
+          "Worked on the development and maintenance of web applications while collaborating with senior developers to improve application quality.",
+        responsibilities: [
+          "Developed and maintained web applications using JavaScript, Node.js, Express, React, and MySQL.",
+          "Collaborated with senior developers to identify bugs, troubleshoot issues, and optimize application performance.",
+          "Participated in code reviews and contributed to building reusable frontend components.",
+        ],
+        technologies: ["JavaScript", "React", "Node.js", "Express", "MySQL"],
+      },
     ],
-    technologies: ["JavaScript", "React", "Node.js", "Express", "MySQL"],
   },
 ];
 
@@ -141,14 +163,14 @@ function Experience() {
                   width: 16,
                   height: 16,
                   borderRadius: "50%",
-                  backgroundColor: "#5B8CFF",
+                  backgroundColor: "#3568D4",
                   border: "4px solid #0B1020",
-                  boxShadow: "0 0 0 2px rgba(91, 140, 255, 0.4)",
+                  boxShadow: "0 0 0 2px rgba(53, 104, 212, 0.4)",
                   zIndex: 1,
                 }}
               />
 
-              {/* Experience Card */}
+              {/* Company Card */}
               <Box
                 sx={{
                   p: { xs: 3, md: 4 },
@@ -158,118 +180,150 @@ function Experience() {
                   backgroundColor: "background.paper",
                 }}
               >
-                {/* Role and Period */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: {
-                      xs: "column",
-                      sm: "row",
-                    },
-                    justifyContent: "space-between",
-                    gap: 1,
-                    mb: 2,
-                  }}
-                >
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      component="h3"
-                      sx={{
-                        fontWeight: 700,
-                        mb: 0.8,
-                      }}
-                    >
-                      {experience.role}
-                    </Typography>
+                {/* Company Information */}
+                <Box sx={{ mb: 3 }}>
+                  <Typography
+                    variant="h5"
+                    component="h3"
+                    sx={{
+                      fontWeight: 700,
+                      mb: 0.8,
+                    }}
+                  >
+                    {experience.company}
+                  </Typography>
 
-                    <Typography
-                      color="primary.light"
-                      sx={{
-                        fontWeight: 600,
-                      }}
-                    >
-                      {experience.company}
-                    </Typography>
-
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ mt: 0.5 }}
-                    >
-                      {experience.location}
-                    </Typography>
-                  </Box>
+                  <Typography variant="body2" color="text.secondary">
+                    {experience.location}
+                  </Typography>
 
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{
+                      mt: 0.5,
                       fontWeight: 600,
-                      whiteSpace: "nowrap",
                     }}
                   >
                     {experience.period}
                   </Typography>
                 </Box>
 
-                <Typography
-                  color="text.secondary"
-                  sx={{
-                    lineHeight: 1.9,
-                    mb: 3,
-                  }}
-                >
-                  {experience.description}
-                </Typography>
-
-                {/* Responsibilities */}
-                <Box
-                  component="ul"
-                  sx={{
-                    pl: 2.5,
-                    m: 0,
-                    mb: 3,
-                    color: "text.secondary",
-
-                    "& li": {
-                      pl: 0.5,
-                      mb: 1.5,
-                      lineHeight: 1.8,
-                    },
-
-                    "& li::marker": {
-                      color: "#5B8CFF",
-                    },
-                  }}
-                >
-                  {experience.responsibilities.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </Box>
-
-                {/* Technologies */}
+                {/* Positions */}
                 <Box
                   sx={{
                     display: "flex",
-                    flexWrap: "wrap",
-                    gap: 1,
+                    flexDirection: "column",
+                    gap: 4,
                   }}
                 >
-                  {experience.technologies.map((technology) => (
+                  {experience.positions.map((position, positionIndex) => (
                     <Box
-                      key={technology}
+                      key={position.role}
                       sx={{
-                        px: 1.5,
-                        py: 0.7,
-                        borderRadius: 1.5,
-                        backgroundColor: "rgba(91, 140, 255, 0.10)",
-                        color: "#B8CCFF",
-                        fontSize: "0.75rem",
-                        fontWeight: 600,
+                        ...(positionIndex > 0 && {
+                          pt: 3,
+                          borderTop: "1px solid",
+                          borderColor: "divider",
+                        }),
                       }}
                     >
-                      {technology}
+                      {/* Role and Period */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: {
+                            xs: "column",
+                            sm: "row",
+                          },
+                          justifyContent: "space-between",
+                          gap: 1,
+                          mb: 2,
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          component="h4"
+                          sx={{
+                            fontWeight: 700,
+                          }}
+                        >
+                          {position.role}
+                        </Typography>
+
+                        <Typography
+                          variant="body2"
+                          color="primary.light"
+                          sx={{
+                            fontWeight: 600,
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {position.period}
+                        </Typography>
+                      </Box>
+
+                      {/* Description */}
+                      <Typography
+                        color="text.secondary"
+                        sx={{
+                          lineHeight: 1.9,
+                          mb: 2,
+                        }}
+                      >
+                        {position.description}
+                      </Typography>
+
+                      {/* Responsibilities */}
+                      <Box
+                        component="ul"
+                        sx={{
+                          pl: 2.5,
+                          m: 0,
+                          mb: 3,
+                          color: "text.secondary",
+
+                          "& li": {
+                            pl: 0.5,
+                            mb: 1.5,
+                            lineHeight: 1.8,
+                          },
+
+                          "& li::marker": {
+                            color: "#3568D4",
+                          },
+                        }}
+                      >
+                        {position.responsibilities.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </Box>
+
+                      {/* Technologies */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 1,
+                        }}
+                      >
+                        {position.technologies.map((technology) => (
+                          <Box
+                            key={technology}
+                            sx={{
+                              px: 1.5,
+                              py: 0.7,
+                              borderRadius: 1.5,
+                              backgroundColor: "rgba(53, 104, 212, 0.10)",
+                              color: "#B8CCFF",
+                              fontSize: "0.75rem",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {technology}
+                          </Box>
+                        ))}
+                      </Box>
                     </Box>
                   ))}
                 </Box>
