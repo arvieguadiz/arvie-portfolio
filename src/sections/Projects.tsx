@@ -289,7 +289,11 @@ function ProjectCard({
 
         {/* Project Information */}
         <Box sx={{ mb: 2 }}>
-          <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.8 }}>
+          <Typography
+            variant="h4"
+            component="h3"
+            sx={{ fontWeight: 700, mb: 0.8 }}
+          >
             {project.name}
           </Typography>
 

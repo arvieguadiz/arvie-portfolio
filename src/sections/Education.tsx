@@ -119,6 +119,7 @@ function Education() {
 
             <Typography
               variant="h5"
+              component="h3"
               sx={{
                 fontWeight: 700,
                 mb: 3,
@@ -129,6 +130,7 @@ function Education() {
 
             <Typography
               variant="h6"
+              component="h4"
               sx={{
                 fontSize: "1.1rem",
                 fontWeight: 700,
@@ -193,6 +195,7 @@ function Education() {
 
             <Typography
               variant="h5"
+              component="h3"
               sx={{
                 fontWeight: 700,
                 mb: 3,

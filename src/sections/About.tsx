@@ -83,6 +83,7 @@ function About() {
           >
             <Typography
               variant="h4"
+              component="h2"
               sx={{
                 fontSize: {
                   xs: "1.5rem",
@@ -193,6 +194,7 @@ function About() {
                   <Box>
                     <Typography
                       variant="h6"
+                      component="h4"
                       sx={{
                         fontSize: "1rem",
                         fontWeight: 700,

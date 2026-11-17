@@ -60,6 +60,7 @@ function Hero() {
 
           <Typography
             variant="h6"
+            component="p"
             sx={{
               color: "text.secondary",
               mb: 2,

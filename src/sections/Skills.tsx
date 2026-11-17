@@ -137,6 +137,7 @@ function Skills() {
             >
               <Typography
                 variant="h6"
+                component="h3"
                 sx={{
                   fontWeight: 700,
                   mb: 1,

@@ -21,13 +21,15 @@ function App() {
     >
       <Navbar />
 
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Education />
-      <Contact />
+      <Box component="main">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Education />
+        <Contact />
+      </Box>
 
       <Footer />
     </Box>
