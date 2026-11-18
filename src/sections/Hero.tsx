@@ -1,5 +1,5 @@
 import { Box, Button, Container, Typography } from "@mui/material";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
 import { motion } from "framer-motion";
 
 function Hero() {
@@ -100,6 +100,7 @@ function Hero() {
             experiences.
           </Typography>
 
+          {/* Action Buttons */}
           <Box
             sx={{
               display: "flex",
@@ -130,8 +131,20 @@ function Hero() {
             >
               Get In Touch
             </Button>
+
+            <Button
+              component="a"
+              href="/resume.pdf"
+              download="Christian-Arvie-Benito-Resume.pdf"
+              variant="outlined"
+              color="primary"
+              startIcon={<Download size={18} />}
+            >
+              Download Resume
+            </Button>
           </Box>
 
+          {/* Social Links */}
           <Box
             sx={{
               display: "flex",
@@ -172,6 +185,7 @@ function Hero() {
           </Box>
         </Box>
 
+        {/* Scroll Indicator */}
         <Box
           component="a"
           href="#about"
