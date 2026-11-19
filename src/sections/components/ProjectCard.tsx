@@ -18,7 +18,7 @@ function ProjectCard({ project, index }: Props) {
 
   const screenshots = project.screenshots ?? [];
   const details = projectDetails[project.name];
-  const displayedTechnologies = project.technologies.slice(0, 4);
+  const displayedTechnologies = project.technologies.slice(0, 7);
   const remainingTechnologies =
     project.technologies.length - displayedTechnologies.length;
 

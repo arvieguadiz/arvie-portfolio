@@ -18,7 +18,7 @@ function FeaturedProjectCard({ project }: Props) {
 
   const screenshots = project.screenshots ?? [];
   const details = projectDetails[project.name];
-  const displayedTechnologies = project.technologies.slice(0, 4);
+  const displayedTechnologies = project.technologies.slice(0, 6);
   const remainingTechnologies =
     project.technologies.length - displayedTechnologies.length;
 
