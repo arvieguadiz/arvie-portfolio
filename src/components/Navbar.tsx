@@ -99,6 +99,7 @@ function Navbar() {
                 px: { xs: 1, sm: 1.5 },
                 minWidth: 0,
                 fontSize: { xs: "0.75rem", sm: "0.85rem" },
+                color: "#B8C7DC",
                 whiteSpace: "nowrap",
               }}
             >

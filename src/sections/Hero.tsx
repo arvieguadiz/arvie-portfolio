@@ -137,7 +137,11 @@ function Hero() {
               href="/resume.pdf"
               download="Christian-Arvie-Benito-Resume.pdf"
               variant="outlined"
-              color="primary"
+              color="inherit"
+              sx={{
+                borderColor: "divider",
+                color: "text.primary",
+              }}
               startIcon={<Download size={18} />}
             >
               Download Resume
