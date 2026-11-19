@@ -18,6 +18,9 @@ function FeaturedProjectCard({ project }: Props) {
 
   const screenshots = project.screenshots ?? [];
   const details = projectDetails[project.name];
+  const displayedTechnologies = project.technologies.slice(0, 4);
+  const remainingTechnologies =
+    project.technologies.length - displayedTechnologies.length;
 
   const openScreenshotFromDetails = (screenshotIndex: number) => {
     setActiveScreenshot(screenshotIndex);
@@ -37,7 +40,7 @@ function FeaturedProjectCard({ project }: Props) {
           position: "relative",
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "0.9fr 1.1fr" },
-          gap: { xs: 4, md: 5 },
+          gap: { xs: 3, md: 5 },
           alignItems: "center",
           p: { xs: 2.5, md: 4 },
           border: "1px solid",
@@ -79,7 +82,7 @@ function FeaturedProjectCard({ project }: Props) {
             <Typography
               sx={{
                 color: project.accent,
-                fontSize: "0.85rem",
+                fontSize: "0.8rem",
                 fontWeight: 700,
                 letterSpacing: 2,
               }}
@@ -88,7 +91,7 @@ function FeaturedProjectCard({ project }: Props) {
             </Typography>
 
             <Chip
-              label="FEATURED PROJECT"
+              label="FEATURED"
               size="small"
               sx={{
                 backgroundColor: `${project.accent}18`,
@@ -114,42 +117,21 @@ function FeaturedProjectCard({ project }: Props) {
             {project.name}
           </Typography>
 
-          <Typography
-            sx={{
-              color: project.accent,
-              fontWeight: 600,
-              mb: 1,
-            }}
-          >
-            {project.category}
-          </Typography>
-
           {project.organization && (
             <Typography variant="body2" sx={{ color: "#B8C7DC", mb: 2.5 }}>
               {project.organization}
             </Typography>
           )}
 
-          <Typography
-            color="text.secondary"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.9,
-              mb: 3,
-            }}
-          >
-            {project.description}
-          </Typography>
-
           <Box
             sx={{
               display: "flex",
               flexWrap: "wrap",
-              gap: 1,
-              mb: 3,
+              gap: 0.8,
+              mt: "auto",
             }}
           >
-            {project.technologies.map((technology) => (
+            {displayedTechnologies.map((technology) => (
               <Chip
                 key={technology}
                 label={technology}
@@ -159,27 +141,40 @@ function FeaturedProjectCard({ project }: Props) {
                   color: "#B8C7DC",
                   fontWeight: 500,
                   borderRadius: 1.5,
+                  fontSize: "0.7rem",
                 }}
               />
             ))}
+
+            {remainingTechnologies > 0 && (
+              <Chip
+                label={`+${remainingTechnologies}`}
+                size="small"
+                sx={{
+                  backgroundColor: "rgba(148, 163, 184, 0.04)",
+                  color: "text.secondary",
+                  fontWeight: 600,
+                  fontSize: "0.7rem",
+                }}
+              />
+            )}
           </Box>
 
           <Button
             variant="outlined"
             onClick={() => setDetailsOpen(true)}
-            endIcon={<ArrowUpRight size={17} />}
+            endIcon={<ArrowUpRight size={16} />}
             sx={{
-              borderColor: `${project.accent}80`,
-              color: "#DCE7F8",
-              transition: "all 0.25s ease",
+              alignSelf: "flex-start",
+              mt: 3,
+              color: "#8EAEFF",
               "&:hover": {
-                borderColor: project.accent,
-                backgroundColor: `${project.accent}12`,
-                transform: "translateY(-2px)",
+                backgroundColor: "transparent",
+                color: "#B8C7DC",
               },
             }}
           >
-            View Project Details
+            Explore Project
           </Button>
         </Box>
 
@@ -206,9 +201,9 @@ function FeaturedProjectCard({ project }: Props) {
               <Typography
                 variant="caption"
                 color="text.secondary"
-                sx={{ display: "block", mt: 1, textAlign: "center" }}
+                sx={{ display: "block", mt: 0.8, textAlign: "center" }}
               >
-                Illustrative project preview
+                Illustrative preview
               </Typography>
             </>
           )}

@@ -18,6 +18,9 @@ function ProjectCard({ project, index }: Props) {
 
   const screenshots = project.screenshots ?? [];
   const details = projectDetails[project.name];
+  const displayedTechnologies = project.technologies.slice(0, 4);
+  const remainingTechnologies =
+    project.technologies.length - displayedTechnologies.length;
 
   const openScreenshotFromDetails = (screenshotIndex: number) => {
     setActiveScreenshot(screenshotIndex);
@@ -37,7 +40,7 @@ function ProjectCard({ project, index }: Props) {
           position: "relative",
           display: "flex",
           flexDirection: "column",
-          p: { xs: 2.5, md: 3.5 },
+          p: { xs: 2.5, md: 3 },
           border: "1px solid",
           borderColor: "divider",
           borderRadius: 3,
@@ -64,26 +67,27 @@ function ProjectCard({ project, index }: Props) {
           }}
         />
 
+        {/* Project header */}
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            flexWrap: "wrap",
             gap: 1,
-            mb: 3,
+            mb: 2.5,
           }}
         >
           <Typography
             sx={{
               color: project.accent,
-              fontSize: "0.85rem",
+              fontSize: "0.75rem",
               fontWeight: 700,
               letterSpacing: 2,
             }}
           >
             PROJECT {project.number}
           </Typography>
+
           <Chip
             label={project.group}
             size="small"
@@ -91,12 +95,13 @@ function ProjectCard({ project, index }: Props) {
             sx={{
               borderColor: `${project.accent}70`,
               color: "#B8C7DC",
-              fontSize: "0.7rem",
+              fontSize: "0.68rem",
             }}
           />
         </Box>
 
-        <Box sx={{ mb: 3 }}>
+        {/* Project preview */}
+        <Box sx={{ mb: 2.5 }}>
           {screenshots.length > 0 ? (
             <ScreenshotGallery
               project={project}
@@ -111,51 +116,46 @@ function ProjectCard({ project, index }: Props) {
               <Typography
                 variant="caption"
                 color="text.secondary"
-                sx={{ display: "block", mt: 1 }}
+                sx={{ display: "block", mt: 0.8, textAlign: "center" }}
               >
-                Illustrative project preview
+                Illustrative preview
               </Typography>
             </>
           )}
         </Box>
 
+        {/* Project title */}
         <Box sx={{ mb: 2 }}>
           <Typography
             variant="h4"
             component="h3"
             sx={{
               fontWeight: 700,
-              mb: 0.8,
-              fontSize: { xs: "1.35rem", md: "1.55rem" },
+              mb: 0.7,
+              fontSize: { xs: "1.3rem", md: "1.45rem" },
+              lineHeight: 1.35,
             }}
           >
             {project.name}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{ color: project.accent, fontWeight: 600 }}
-          >
-            {project.category}
-          </Typography>
+
           {project.organization && (
-            <Typography
-              variant="caption"
-              sx={{ display: "block", color: "#B8C7DC", mt: 0.7 }}
-            >
+            <Typography variant="caption" sx={{ color: "#B8C7DC" }}>
               {project.organization}
             </Typography>
           )}
         </Box>
 
-        <Typography
-          color="text.secondary"
-          sx={{ fontSize: "0.92rem", lineHeight: 1.85, mb: 3 }}
+        {/* Technologies */}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 0.8,
+            mt: "auto",
+          }}
         >
-          {project.description}
-        </Typography>
-
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: "auto" }}>
-          {project.technologies.map((technology) => (
+          {displayedTechnologies.map((technology) => (
             <Chip
               key={technology}
               label={technology}
@@ -165,27 +165,41 @@ function ProjectCard({ project, index }: Props) {
                 color: "#B8C7DC",
                 fontWeight: 500,
                 borderRadius: 1.5,
+                fontSize: "0.7rem",
               }}
             />
           ))}
+
+          {remainingTechnologies > 0 && (
+            <Chip
+              label={`+${remainingTechnologies}`}
+              size="small"
+              sx={{
+                backgroundColor: "rgba(148, 163, 184, 0.04)",
+                color: "text.secondary",
+                fontWeight: 600,
+                fontSize: "0.7rem",
+              }}
+            />
+          )}
         </Box>
 
+        {/* Details action */}
         <Button
           variant="outlined"
           onClick={() => setDetailsOpen(true)}
-          endIcon={<ArrowUpRight size={17} />}
+          endIcon={<ArrowUpRight size={16} />}
           sx={{
             alignSelf: "flex-start",
             mt: 3,
-            borderColor: `${project.accent}80`,
-            color: "#DCE7F8",
+            color: "#8EAEFF",
             "&:hover": {
-              borderColor: project.accent,
-              backgroundColor: `${project.accent}12`,
+              backgroundColor: "transparent",
+              color: "#B8C7DC",
             },
           }}
         >
-          View Project Details
+          Explore Project
         </Button>
       </Box>
 

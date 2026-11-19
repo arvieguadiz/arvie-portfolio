@@ -94,15 +94,10 @@ function ScreenshotGallery({
 
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          justifyItems: "center",
           mt: 1.5,
         }}
       >
-        <Typography variant="caption" color="text.secondary">
-          {activeScreenshot.label}
-        </Typography>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           {screenshots.map((screenshot, index) => (
             <Box
@@ -129,13 +124,6 @@ function ScreenshotGallery({
           ))}
         </Box>
       </Box>
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ display: "block", mt: 1 }}
-      >
-        Click screenshot to enlarge
-      </Typography>
     </>
   );
 }

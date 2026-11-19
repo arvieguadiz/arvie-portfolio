@@ -32,7 +32,7 @@ function ProjectVisual({ project }: Props) {
   return (
     <Box
       sx={{
-        height: { xs: 230, sm: 260 },
+        height: { xs: 250, sm: 300 },
         borderRadius: 2.5,
         background:
           "radial-gradient(circle at 50% 0%, rgba(91,140,255,0.13), transparent 65%), #080B14",
