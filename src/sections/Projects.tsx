@@ -4,6 +4,7 @@ import { Box, Chip, Container, Typography } from "@mui/material";
 import projects from "./data/projects";
 import { projectFilters, type ProjectFilter } from "./types/project";
 import ProjectCard from "./components/ProjectCard";
+import FeaturedProjectCard from "./components/FeaturedProjectCard";
 
 function Projects() {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
@@ -12,6 +13,14 @@ function Projects() {
     activeFilter === "All"
       ? projects
       : projects.filter((project) => project.group === activeFilter);
+
+  const featuredProjects = filteredProjects.filter(
+    (project) => project.featured,
+  );
+
+  const regularProjects = filteredProjects.filter(
+    (project) => !project.featured,
+  );
 
   return (
     <Box
@@ -31,6 +40,7 @@ function Projects() {
           >
             EXPERIENCE THROUGH PROJECTS
           </Typography>
+
           <Typography
             variant="h2"
             component="h2"
@@ -41,6 +51,7 @@ function Projects() {
               .
             </Box>
           </Typography>
+
           <Typography
             color="text.secondary"
             sx={{ mt: 2, maxWidth: 650, lineHeight: 1.9 }}
@@ -98,6 +109,14 @@ function Projects() {
           {filteredProjects.length === 1 ? "project" : "projects"}
         </Typography>
 
+        {featuredProjects.length > 0 && (
+          <Box sx={{ mb: 4 }}>
+            {featuredProjects.map((project) => (
+              <FeaturedProjectCard key={project.name} project={project} />
+            ))}
+          </Box>
+        )}
+
         <Box
           sx={{
             display: "grid",
@@ -105,7 +124,7 @@ function Projects() {
             gap: 3,
           }}
         >
-          {filteredProjects.map((project, index) => (
+          {regularProjects.map((project, index) => (
             <ProjectCard key={project.name} project={project} index={index} />
           ))}
         </Box>

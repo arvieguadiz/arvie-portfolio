@@ -1,0 +1,239 @@
+import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { Box, Button, Chip, Typography } from "@mui/material";
+import { motion } from "framer-motion";
+import projectDetails from "../data/projectDetails";
+import type { Project } from "../types/project";
+import ProjectVisual from "./ProjectVisual";
+import ScreenshotGallery from "./ScreenshotGallery";
+import ProjectDetailsDialog from "./ProjectDetailsDialog";
+import ScreenshotPreviewDialog from "./ScreenshotPreviewDialog";
+
+type Props = { project: Project };
+
+function FeaturedProjectCard({ project }: Props) {
+  const [activeScreenshot, setActiveScreenshot] = useState(0);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+
+  const screenshots = project.screenshots ?? [];
+  const details = projectDetails[project.name];
+
+  const openScreenshotFromDetails = (screenshotIndex: number) => {
+    setActiveScreenshot(screenshotIndex);
+    setDetailsOpen(false);
+    setPreviewOpen(true);
+  };
+
+  return (
+    <>
+      <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6 }}
+        sx={{
+          position: "relative",
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "0.9fr 1.1fr" },
+          gap: { xs: 4, md: 5 },
+          alignItems: "center",
+          p: { xs: 2.5, md: 4 },
+          border: "1px solid",
+          borderColor: `${project.accent}65`,
+          borderRadius: 3,
+          backgroundColor: "background.paper",
+          overflow: "hidden",
+          transition: "all 0.3s ease",
+          "&:hover": {
+            borderColor: project.accent,
+            boxShadow: `0 18px 45px ${project.accent}15`,
+          },
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: -100,
+            right: -70,
+            width: 280,
+            height: 280,
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${project.accent}20 0%, transparent 70%)`,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Project information */}
+        <Box sx={{ position: "relative", zIndex: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 1.2,
+              mb: 3,
+            }}
+          >
+            <Typography
+              sx={{
+                color: project.accent,
+                fontSize: "0.85rem",
+                fontWeight: 700,
+                letterSpacing: 2,
+              }}
+            >
+              PROJECT {project.number}
+            </Typography>
+
+            <Chip
+              label="FEATURED PROJECT"
+              size="small"
+              sx={{
+                backgroundColor: `${project.accent}18`,
+                color: project.accent,
+                border: `1px solid ${project.accent}50`,
+                fontSize: "0.68rem",
+                fontWeight: 700,
+                letterSpacing: 0.5,
+              }}
+            />
+          </Box>
+
+          <Typography
+            variant="h3"
+            component="h3"
+            sx={{
+              fontWeight: 800,
+              fontSize: { xs: "1.8rem", md: "2.35rem" },
+              lineHeight: 1.2,
+              mb: 1.5,
+            }}
+          >
+            {project.name}
+          </Typography>
+
+          <Typography
+            sx={{
+              color: project.accent,
+              fontWeight: 600,
+              mb: 1,
+            }}
+          >
+            {project.category}
+          </Typography>
+
+          {project.organization && (
+            <Typography variant="body2" sx={{ color: "#B8C7DC", mb: 2.5 }}>
+              {project.organization}
+            </Typography>
+          )}
+
+          <Typography
+            color="text.secondary"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.9,
+              mb: 3,
+            }}
+          >
+            {project.description}
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1,
+              mb: 3,
+            }}
+          >
+            {project.technologies.map((technology) => (
+              <Chip
+                key={technology}
+                label={technology}
+                size="small"
+                sx={{
+                  backgroundColor: "rgba(148, 163, 184, 0.08)",
+                  color: "#B8C7DC",
+                  fontWeight: 500,
+                  borderRadius: 1.5,
+                }}
+              />
+            ))}
+          </Box>
+
+          <Button
+            variant="outlined"
+            onClick={() => setDetailsOpen(true)}
+            endIcon={<ArrowUpRight size={17} />}
+            sx={{
+              borderColor: `${project.accent}80`,
+              color: "#DCE7F8",
+              transition: "all 0.25s ease",
+              "&:hover": {
+                borderColor: project.accent,
+                backgroundColor: `${project.accent}12`,
+                transform: "translateY(-2px)",
+              },
+            }}
+          >
+            View Project Details
+          </Button>
+        </Box>
+
+        {/* Project visual */}
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            minWidth: 0,
+            order: { xs: -1, md: 0 },
+          }}
+        >
+          {screenshots.length > 0 ? (
+            <ScreenshotGallery
+              project={project}
+              screenshots={screenshots}
+              activeIndex={activeScreenshot}
+              onChange={setActiveScreenshot}
+              onOpenPreview={() => setPreviewOpen(true)}
+            />
+          ) : (
+            <>
+              <ProjectVisual project={project} />
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ display: "block", mt: 1, textAlign: "center" }}
+              >
+                Illustrative project preview
+              </Typography>
+            </>
+          )}
+        </Box>
+      </Box>
+
+      <ProjectDetailsDialog
+        project={project}
+        details={details}
+        screenshots={screenshots}
+        open={detailsOpen}
+        onClose={() => setDetailsOpen(false)}
+        onSelectScreenshot={openScreenshotFromDetails}
+      />
+
+      <ScreenshotPreviewDialog
+        project={project}
+        screenshots={screenshots}
+        activeIndex={activeScreenshot}
+        open={previewOpen}
+        onClose={() => setPreviewOpen(false)}
+        onChange={setActiveScreenshot}
+      />
+    </>
+  );
+}
+
+export default FeaturedProjectCard;

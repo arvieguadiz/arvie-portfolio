@@ -15,6 +15,7 @@ export type Project = {
   category: string;
   group: "Professional" | "Academic & Internship" | "Personal";
   organization?: string;
+  featured?: boolean;
   description: string;
   technologies: string[];
   accent: string;

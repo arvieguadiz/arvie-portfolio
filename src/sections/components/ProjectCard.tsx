@@ -131,7 +131,10 @@ function ProjectCard({ project, index }: Props) {
           >
             {project.name}
           </Typography>
-          <Typography variant="body2" sx={{ color: project.accent, fontWeight: 600 }}>
+          <Typography
+            variant="body2"
+            sx={{ color: project.accent, fontWeight: 600 }}
+          >
             {project.category}
           </Typography>
           {project.organization && (
