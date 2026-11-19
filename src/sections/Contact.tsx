@@ -105,18 +105,6 @@ function Contact() {
             >
               LinkedIn ↗
             </Box>
-
-            <Box
-              component="a"
-              href="mailto:arvieguadiz@gmail.com"
-              sx={{
-                color: "text.secondary",
-                textDecoration: "none",
-                "&:hover": { color: "primary.main" },
-              }}
-            >
-              Email
-            </Box>
           </Box>
         </Box>
       </Container>
