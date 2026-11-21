@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { ArrowDown, ArrowUpRight, Download, Code2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const technologies = [
   "React",
@@ -12,16 +12,18 @@ const technologies = [
 ];
 
 function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <Box
       id="home"
       sx={{
-        minHeight: "calc(100vh - 76px)",
+        minHeight: { xs: "auto", md: "calc(100vh - 76px)" },
         display: "flex",
         alignItems: "center",
         position: "relative",
         overflow: "hidden",
-        py: { xs: 10, md: 12 },
+        py: { xs: 7, sm: 9, md: 12 },
         background:
           "radial-gradient(circle at 78% 40%, rgba(53, 104, 212, 0.15), transparent 35%)",
       }}
@@ -29,15 +31,23 @@ function Hero() {
       {/* Ambient Background Orbs */}
       <Box
         component={motion.div}
-        animate={{
-          x: [0, 35, 0],
-          y: [0, -25, 0],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={
+          shouldReduceMotion
+            ? { x: 0, y: 0 }
+            : {
+                x: [0, 35, 0],
+                y: [0, -25, 0],
+              }
+        }
+        transition={
+          shouldReduceMotion
+            ? { duration: 0 }
+            : {
+                duration: 14,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+        }
         sx={{
           position: "absolute",
           top: "5%",
@@ -55,15 +65,23 @@ function Hero() {
 
       <Box
         component={motion.div}
-        animate={{
-          x: [0, -25, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={
+          shouldReduceMotion
+            ? { x: 0, y: 0 }
+            : {
+                x: [0, -25, 0],
+                y: [0, 30, 0],
+              }
+        }
+        transition={
+          shouldReduceMotion
+            ? { duration: 0 }
+            : {
+                duration: 18,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+        }
         sx={{
           position: "absolute",
           bottom: "0%",
@@ -91,9 +109,9 @@ function Hero() {
           {/* Left: Introduction */}
           <Box
             component={motion.div}
-            initial={{ opacity: 0, y: 24 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.7 }}
             sx={{ maxWidth: 700 }}
           >
             {/* Availability */}
@@ -146,8 +164,12 @@ function Hero() {
             <Typography
               variant="h1"
               sx={{
-                fontSize: { xs: "2.8rem", sm: "4rem", md: "4.5rem" },
-                lineHeight: 1.08,
+                fontSize: {
+                  xs: "2.4rem",
+                  sm: "4rem",
+                  md: "4.5rem",
+                },
+                lineHeight: 1.12,
                 mb: 3,
               }}
             >
@@ -177,8 +199,11 @@ function Hero() {
               sx={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: 2,
+                gap: { xs: 1.5, sm: 2 },
                 mb: 5,
+                "& .MuiButton-root": {
+                  minHeight: 44,
+                },
               }}
             >
               <Button
@@ -278,9 +303,12 @@ function Hero() {
           {/* Right: Developer Visual */}
           <Box
             component={motion.div}
-            initial={{ opacity: 0, x: 35 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 35 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.9,
+              delay: shouldReduceMotion ? 0 : 0.2,
+            }}
             sx={{
               position: "relative",
               display: "flex",
@@ -305,12 +333,16 @@ function Hero() {
             {/* Code Editor Card */}
             <Box
               component={motion.div}
-              animate={{ y: [0, -10, 0] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              animate={shouldReduceMotion ? { y: 0 } : { y: [0, -10, 0] }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : {
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }
+              }
               sx={{
                 position: "relative",
                 width: "100%",
@@ -360,7 +392,7 @@ function Hero() {
               </Box>
 
               {/* Code Content */}
-              <Box sx={{ p: { xs: 2.5, sm: 3.5 } }}>
+              <Box sx={{ p: { xs: 2, sm: 3.5 } }}>
                 <Typography
                   variant="caption"
                   sx={{
@@ -448,7 +480,9 @@ function Hero() {
                         ml: 0.5,
                         verticalAlign: "middle",
                         backgroundColor: "#10B981",
-                        animation: "blink 1s step-end infinite",
+                        animation: shouldReduceMotion
+                          ? "none"
+                          : "blink 1s step-end infinite",
                         "@keyframes blink": {
                           "50%": { opacity: 0 },
                         },
@@ -479,14 +513,14 @@ function Hero() {
 
                 <Box
                   component={motion.div}
-                  initial="hidden"
+                  initial={shouldReduceMotion ? false : "hidden"}
                   animate="visible"
                   variants={{
                     hidden: {},
                     visible: {
                       transition: {
-                        staggerChildren: 0.12,
-                        delayChildren: 0.3,
+                        staggerChildren: shouldReduceMotion ? 0 : 0.12,
+                        delayChildren: shouldReduceMotion ? 0 : 0.3,
                       },
                     },
                   }}
@@ -504,7 +538,10 @@ function Hero() {
                         hidden: { opacity: 0, y: 10 },
                         visible: { opacity: 1, y: 0 },
                       }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      transition={{
+                        duration: shouldReduceMotion ? 0 : 0.35,
+                        ease: "easeOut",
+                      }}
                       sx={{
                         px: 1.5,
                         py: 0.8,
@@ -551,12 +588,16 @@ function Hero() {
             {/* Floating Developer Badge */}
             <Box
               component={motion.div}
-              animate={{ y: [0, -8, 0] }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              animate={shouldReduceMotion ? { y: 0 } : { y: [0, -8, 0] }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : {
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }
+              }
               sx={{
                 position: "absolute",
                 bottom: { xs: -45, md: -25 },

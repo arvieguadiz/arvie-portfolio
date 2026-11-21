@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import { Code2, Layers3, Rocket } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const highlights = [
   {
@@ -24,6 +24,8 @@ const highlights = [
 ];
 
 function About() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <Box
       id="about"
@@ -52,7 +54,8 @@ function About() {
             sx={{
               mt: 1,
               fontSize: {
-                xs: "2.3rem",
+                xs: "2.1rem",
+                sm: "2.6rem",
                 md: "3.5rem",
               },
             }}
@@ -76,10 +79,10 @@ function About() {
           {/* Biography */}
           <Box
             component={motion.div}
-            initial={{ opacity: 0, y: 25 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
           >
             <Typography
               variant="h4"
@@ -153,17 +156,17 @@ function About() {
                 <Box
                   key={item.title}
                   component={motion.div}
-                  initial={{ opacity: 0, x: 25 }}
+                  initial={shouldReduceMotion ? false : { opacity: 0, x: 25 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{
-                    duration: 0.5,
-                    delay: index * 0.12,
+                    duration: shouldReduceMotion ? 0 : 0.5,
+                    delay: shouldReduceMotion ? 0 : index * 0.12,
                   }}
                   sx={{
                     display: "flex",
-                    gap: 2.5,
-                    p: 3,
+                    gap: { xs: 2, sm: 2.5 },
+                    p: { xs: 2, sm: 3 },
                     border: "1px solid",
                     borderColor: "divider",
                     borderRadius: 3,

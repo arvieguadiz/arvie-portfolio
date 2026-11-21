@@ -44,7 +44,14 @@ function Projects() {
           <Typography
             variant="h2"
             component="h2"
-            sx={{ mt: 1, fontSize: { xs: "2.3rem", md: "3.5rem" } }}
+            sx={{
+              mt: 1,
+              fontSize: {
+                xs: "2.1rem",
+                sm: "2.6rem",
+                md: "3.5rem",
+              },
+            }}
           >
             Projects
             <Box component="span" sx={{ color: "primary.main" }}>
@@ -63,7 +70,12 @@ function Projects() {
         </Box>
 
         <Box
-          sx={{ display: "flex", flexWrap: "wrap", gap: 1.2, mb: 4 }}
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: { xs: 1, sm: 1.2 },
+            mb: 4,
+          }}
           role="group"
           aria-label="Filter projects by category"
         >
@@ -102,7 +114,10 @@ function Projects() {
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ mb: 3 }}
+          sx={{
+            mb: 3,
+            fontSize: { xs: "0.8rem", sm: "0.875rem" },
+          }}
           aria-live="polite"
         >
           Showing {filteredProjects.length}{" "}
@@ -121,7 +136,7 @@ function Projects() {
           sx={{
             display: "grid",
             gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
-            gap: 3,
+            gap: { xs: 2, sm: 3 },
           }}
         >
           {regularProjects.map((project, index) => (

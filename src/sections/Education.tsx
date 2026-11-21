@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import { GraduationCap, Award } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const developmentActivities = [
   {
@@ -22,6 +22,8 @@ const developmentActivities = [
 ];
 
 function Education() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <Box
       id="education"
@@ -50,7 +52,8 @@ function Education() {
             sx={{
               mt: 1,
               fontSize: {
-                xs: "2.3rem",
+                xs: "2.1rem",
+                sm: "2.6rem",
                 md: "3.5rem",
               },
             }}
@@ -82,19 +85,21 @@ function Education() {
               xs: "1fr",
               md: "0.9fr 1.1fr",
             },
-            gap: 3,
+            gap: { xs: 2, sm: 3 },
             alignItems: "stretch",
           }}
         >
           {/* Education Card */}
           <Box
             component={motion.div}
-            initial={{ opacity: 0, y: 25 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.5,
+            }}
             sx={{
-              p: { xs: 3, md: 4 },
+              p: { xs: 2.5, sm: 3, md: 4 },
               border: "1px solid",
               borderColor: "divider",
               borderRadius: 3,
@@ -165,12 +170,15 @@ function Education() {
           {/* Professional Development Card */}
           <Box
             component={motion.div}
-            initial={{ opacity: 0, y: 25 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.5,
+              delay: shouldReduceMotion ? 0 : 0.15,
+            }}
             sx={{
-              p: { xs: 3, md: 4 },
+              p: { xs: 2.5, sm: 3, md: 4 },
               border: "1px solid",
               borderColor: "divider",
               borderRadius: 3,
@@ -237,11 +245,12 @@ function Education() {
                     }}
                   />
 
-                  <Box sx={{ flex: 1 }}>
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Typography
                       sx={{
                         fontWeight: 600,
                         lineHeight: 1.6,
+                        overflowWrap: "anywhere",
                       }}
                     >
                       {activity.title}

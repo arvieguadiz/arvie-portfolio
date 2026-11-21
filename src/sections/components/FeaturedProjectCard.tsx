@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Box, Button, Chip, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import projectDetails from "../data/projectDetails";
 import type { Project } from "../types/project";
 import ProjectVisual from "./ProjectVisual";
@@ -12,6 +12,7 @@ import ScreenshotPreviewDialog from "./ScreenshotPreviewDialog";
 type Props = { project: Project };
 
 function FeaturedProjectCard({ project }: Props) {
+  const shouldReduceMotion = useReducedMotion();
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -32,10 +33,12 @@ function FeaturedProjectCard({ project }: Props) {
     <>
       <Box
         component={motion.div}
-        initial={{ opacity: 0, y: 30 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.6 }}
+        transition={{
+          duration: shouldReduceMotion ? 0 : 0.6,
+        }}
         sx={{
           position: "relative",
           display: "grid",

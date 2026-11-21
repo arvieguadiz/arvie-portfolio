@@ -1,21 +1,23 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 function Contact() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <Box id="contact" component="section" sx={{ py: { xs: 9, md: 14 } }}>
+    <Box id="contact" component="section" sx={{ py: { xs: 8, sm: 9, md: 14 } }}>
       <Container maxWidth="lg">
         <Box
           component={motion.div}
-          initial={{ opacity: 0, y: 24 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
           sx={{
             maxWidth: 850,
             mx: "auto",
-            p: { xs: 3, md: 6 },
+            p: { xs: 2.5, sm: 4, md: 6 },
             textAlign: "center",
             border: "1px solid",
             borderColor: "divider",
@@ -40,7 +42,11 @@ function Contact() {
             sx={{
               mt: 2,
               mb: 2,
-              fontSize: { xs: "2rem", md: "3rem" },
+              fontSize: {
+                xs: "2rem",
+                sm: "2.5rem",
+                md: "3rem",
+              },
             }}
           >
             Let's work together.
@@ -65,7 +71,11 @@ function Contact() {
             variant="contained"
             color="primary"
             endIcon={<ArrowUpRight size={18} />}
-            sx={{ mb: 4 }}
+            sx={{
+              mb: 4,
+              minHeight: 44,
+              px: { xs: 2.5, sm: 3 },
+            }}
           >
             Send Me an Email
           </Button>
@@ -75,7 +85,7 @@ function Contact() {
               display: "flex",
               justifyContent: "center",
               flexWrap: "wrap",
-              gap: 3,
+              gap: { xs: 2.5, sm: 3 },
             }}
           >
             <Box
@@ -86,6 +96,9 @@ function Contact() {
               sx={{
                 color: "text.secondary",
                 textDecoration: "none",
+                minHeight: 44,
+                display: "inline-flex",
+                alignItems: "center",
                 "&:hover": { color: "primary.main" },
               }}
             >
@@ -100,6 +113,9 @@ function Contact() {
               sx={{
                 color: "text.secondary",
                 textDecoration: "none",
+                minHeight: 44,
+                display: "inline-flex",
+                alignItems: "center",
                 "&:hover": { color: "primary.main" },
               }}
             >

@@ -18,18 +18,23 @@ function Footer() {
             flexDirection: { xs: "column", sm: "row" },
             justifyContent: "space-between",
             alignItems: "center",
-            gap: 2,
+            flexWrap: "wrap",
+            gap: { xs: 1.5, sm: 2 },
           }}
         >
           <Box
             component="a"
             href="#home"
+            aria-label="CAB - Back to home"
             sx={{
               color: "text.primary",
               textDecoration: "none",
               fontSize: "1.3rem",
               fontWeight: 800,
               letterSpacing: "-0.08em",
+              minHeight: 44,
+              display: "inline-flex",
+              alignItems: "center",
             }}
           >
             CAB<span style={{ color: "#5B8CFF" }}>.</span>
@@ -38,7 +43,11 @@ function Footer() {
           <Typography
             variant="body2"
             color="text.secondary"
-            sx={{ textAlign: "center" }}
+            sx={{
+              textAlign: "center",
+              lineHeight: 1.7,
+              overflowWrap: "anywhere",
+            }}
           >
             © {new Date().getFullYear()} Christian Arvie Benito. All rights
             reserved.
@@ -52,6 +61,9 @@ function Footer() {
               textDecoration: "none",
               fontSize: "0.85rem",
               fontWeight: 600,
+              minHeight: 44,
+              display: "inline-flex",
+              alignItems: "center",
               "&:hover": { color: "primary.main" },
             }}
           >

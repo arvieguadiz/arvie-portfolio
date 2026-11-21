@@ -1,5 +1,5 @@
 import { Box, Chip, Container, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const skillGroups = [
   {
@@ -48,6 +48,8 @@ const skillGroups = [
 ];
 
 function Skills() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <Box
       id="skills"
@@ -76,7 +78,8 @@ function Skills() {
             sx={{
               mt: 1,
               fontSize: {
-                xs: "2.3rem",
+                xs: "2.1rem",
+                sm: "2.6rem",
                 md: "3.5rem",
               },
             }}
@@ -115,15 +118,15 @@ function Skills() {
             <Box
               key={group.title}
               component={motion.div}
-              initial={{ opacity: 0, y: 25 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{
-                duration: 0.5,
-                delay: index * 0.1,
+                duration: shouldReduceMotion ? 0 : 0.5,
+                delay: shouldReduceMotion ? 0 : index * 0.1,
               }}
               sx={{
-                p: { xs: 3, md: 3.5 },
+                p: { xs: 2.5, sm: 3, md: 3.5 },
                 border: "1px solid",
                 borderColor: "divider",
                 borderRadius: 3,

@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const experiences = [
   {
@@ -99,6 +99,8 @@ const experiences = [
 ];
 
 function Experience() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <Box
       id="experience"
@@ -127,7 +129,8 @@ function Experience() {
             sx={{
               mt: 1,
               fontSize: {
-                xs: "2.3rem",
+                xs: "2.1rem",
+                sm: "2.6rem",
                 md: "3.5rem",
               },
             }}
@@ -175,12 +178,12 @@ function Experience() {
             <Box
               key={experience.company}
               component={motion.div}
-              initial={{ opacity: 0, x: -25 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, x: -25 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.15,
+                duration: shouldReduceMotion ? 0 : 0.6,
+                delay: shouldReduceMotion ? 0 : index * 0.15,
               }}
               sx={{
                 position: "relative",
@@ -207,7 +210,7 @@ function Experience() {
               {/* Company Card */}
               <Box
                 sx={{
-                  p: { xs: 3, md: 4 },
+                  p: { xs: 2.5, sm: 3, md: 4 },
                   border: "1px solid",
                   borderColor: "divider",
                   borderRadius: 3,
