@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Box, Button, Container } from "@mui/material";
 import { Download } from "lucide-react";
 
@@ -10,6 +11,58 @@ const navLinks = [
 ];
 
 function Navbar() {
+  const [activeSection, setActiveSection] = useState("#about");
+
+  // Detect the section currently being viewed.
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector(link.href))
+      .filter((section): section is Element => section !== null);
+
+    const observer = new IntersectionObserver(
+      () => {
+        const currentSection = sections
+          .filter((section) => section.getBoundingClientRect().top <= 140)
+          .pop();
+
+        if (currentSection) {
+          setActiveSection(`#${currentSection.id}`);
+        } else {
+          setActiveSection("#about");
+        }
+      },
+      {
+        rootMargin: "-100px 0px -60% 0px",
+        threshold: 0,
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Smoothly scroll to the selected section.
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    event.preventDefault();
+
+    const section = document.querySelector(href);
+
+    if (section) {
+      const top = window.scrollY + section.getBoundingClientRect().top - 90;
+
+      window.history.pushState(null, "", href);
+
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <Box
       component="header"
@@ -38,6 +91,9 @@ function Navbar() {
           <Box
             component="a"
             href="#home"
+            onClick={(event: React.MouseEvent<HTMLAnchorElement>) =>
+              handleNavClick(event, "#home")
+            }
             sx={{
               color: "text.primary",
               textDecoration: "none",
@@ -60,23 +116,45 @@ function Navbar() {
               gap: 3,
             }}
           >
-            {navLinks.map((link) => (
-              <Box
-                key={link.label}
-                component="a"
-                href={link.href}
-                sx={{
-                  color: "text.secondary",
-                  textDecoration: "none",
-                  fontSize: "0.85rem",
-                  fontWeight: 500,
-                  transition: "color 0.2s ease",
-                  "&:hover": { color: "primary.main" },
-                }}
-              >
-                {link.label}
-              </Box>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+
+              return (
+                <Box
+                  key={link.label}
+                  component="a"
+                  href={link.href}
+                  aria-current={isActive ? "location" : undefined}
+                  onClick={(event: React.MouseEvent<HTMLAnchorElement>) =>
+                    handleNavClick(event, link.href)
+                  }
+                  sx={{
+                    position: "relative",
+                    color: isActive ? "#5B8CFF" : "text.secondary",
+                    textDecoration: "none",
+                    fontSize: "0.85rem",
+                    fontWeight: isActive ? 600 : 500,
+                    transition: "color 0.2s ease",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      left: 0,
+                      bottom: "-8px",
+                      width: isActive ? "100%" : "0%",
+                      height: "2px",
+                      backgroundColor: "#5B8CFF",
+                      borderRadius: "2px",
+                      transition: "width 0.2s ease",
+                    },
+                    "&:hover": {
+                      color: "#5B8CFF",
+                    },
+                  }}
+                >
+                  {link.label}
+                </Box>
+              );
+            })}
           </Box>
 
           {/* Action Buttons */}
@@ -109,6 +187,9 @@ function Navbar() {
             <Button
               component="a"
               href="#contact"
+              onClick={(event: React.MouseEvent<HTMLAnchorElement>) =>
+                handleNavClick(event, "#contact")
+              }
               variant="outlined"
               color="primary"
               sx={{
