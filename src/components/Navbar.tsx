@@ -13,7 +13,6 @@ const navLinks = [
 function Navbar() {
   const [activeSection, setActiveSection] = useState("#about");
 
-  // Detect the section currently being viewed.
   useEffect(() => {
     const sections = navLinks
       .map((link) => document.querySelector(link.href))
@@ -42,7 +41,6 @@ function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Smoothly scroll to the selected section.
   const handleNavClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
     href: string,
@@ -63,6 +61,48 @@ function Navbar() {
     }
   };
 
+  const renderNavLinks = () =>
+    navLinks.map((link) => {
+      const isActive = activeSection === link.href;
+
+      return (
+        <Box
+          key={link.label}
+          component="a"
+          href={link.href}
+          aria-current={isActive ? "location" : undefined}
+          onClick={(event: React.MouseEvent<HTMLAnchorElement>) =>
+            handleNavClick(event, link.href)
+          }
+          sx={{
+            position: "relative",
+            flexShrink: 0,
+            color: isActive ? "#5B8CFF" : "text.secondary",
+            textDecoration: "none",
+            fontSize: "0.85rem",
+            fontWeight: isActive ? 600 : 500,
+            transition: "color 0.2s ease",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: "-8px",
+              width: isActive ? "100%" : "0%",
+              height: "2px",
+              backgroundColor: "#5B8CFF",
+              borderRadius: "2px",
+              transition: "width 0.2s ease",
+            },
+            "&:hover": {
+              color: "#5B8CFF",
+            },
+          }}
+        >
+          {link.label}
+        </Box>
+      );
+    });
+
   return (
     <Box
       component="header"
@@ -78,9 +118,10 @@ function Navbar() {
       }}
     >
       <Container maxWidth="lg">
+        {/* Main Navbar Row */}
         <Box
           sx={{
-            minHeight: "76px",
+            minHeight: { xs: "64px", md: "76px" },
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -106,7 +147,7 @@ function Navbar() {
             CAB<span style={{ color: "#5B8CFF" }}>.</span>
           </Box>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation */}
           <Box
             component="nav"
             aria-label="Main navigation"
@@ -116,45 +157,7 @@ function Navbar() {
               gap: 3,
             }}
           >
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href;
-
-              return (
-                <Box
-                  key={link.label}
-                  component="a"
-                  href={link.href}
-                  aria-current={isActive ? "location" : undefined}
-                  onClick={(event: React.MouseEvent<HTMLAnchorElement>) =>
-                    handleNavClick(event, link.href)
-                  }
-                  sx={{
-                    position: "relative",
-                    color: isActive ? "#5B8CFF" : "text.secondary",
-                    textDecoration: "none",
-                    fontSize: "0.85rem",
-                    fontWeight: isActive ? 600 : 500,
-                    transition: "color 0.2s ease",
-                    "&::after": {
-                      content: '""',
-                      position: "absolute",
-                      left: 0,
-                      bottom: "-8px",
-                      width: isActive ? "100%" : "0%",
-                      height: "2px",
-                      backgroundColor: "#5B8CFF",
-                      borderRadius: "2px",
-                      transition: "width 0.2s ease",
-                    },
-                    "&:hover": {
-                      color: "#5B8CFF",
-                    },
-                  }}
-                >
-                  {link.label}
-                </Box>
-              );
-            })}
+            {renderNavLinks()}
           </Box>
 
           {/* Action Buttons */}
@@ -162,7 +165,7 @@ function Navbar() {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: { xs: 1, sm: 1.5 },
+              gap: { xs: 0.5, sm: 1.5 },
               flexShrink: 0,
             }}
           >
@@ -172,16 +175,25 @@ function Navbar() {
               download="Christian-Arvie-Benito-Resume.pdf"
               variant="text"
               color="primary"
+              aria-label="Download CV"
               startIcon={<Download size={16} />}
               sx={{
-                px: { xs: 1, sm: 1.5 },
-                minWidth: 0,
+                px: { xs: 0.75, sm: 1.5 },
+                minWidth: { xs: "36px", sm: 0 },
                 fontSize: { xs: "0.75rem", sm: "0.85rem" },
                 color: "#B8C7DC",
                 whiteSpace: "nowrap",
+                "& .MuiButton-startIcon": {
+                  mr: { xs: 0, sm: 1 },
+                },
               }}
             >
-              Download CV
+              <Box
+                component="span"
+                sx={{ display: { xs: "none", sm: "inline" } }}
+              >
+                Download CV
+              </Box>
             </Button>
 
             <Button
@@ -194,7 +206,7 @@ function Navbar() {
               color="primary"
               sx={{
                 borderRadius: "8px",
-                px: { xs: 1.5, sm: 2.5 },
+                px: { xs: 1.25, sm: 2.5 },
                 py: 1,
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#B8C7DC",
@@ -209,6 +221,26 @@ function Navbar() {
               Let's Talk
             </Button>
           </Box>
+        </Box>
+
+        {/* Mobile Navigation */}
+        <Box
+          component="nav"
+          aria-label="Mobile navigation"
+          sx={{
+            display: { xs: "flex", md: "none" },
+            alignItems: "center",
+            gap: 3,
+            overflowX: "auto",
+            py: 1.5,
+            px: 0.5,
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+        >
+          {renderNavLinks()}
         </Box>
       </Container>
     </Box>
