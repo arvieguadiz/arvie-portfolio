@@ -1,5 +1,11 @@
 import { Box, Button, Container, Typography } from "@mui/material";
-import { ArrowDown, ArrowUpRight, Download, Code2 } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  ArrowUp,
+  Download,
+  Code2,
+} from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const technologies = [
@@ -277,10 +283,14 @@ function Hero() {
                   color: "text.secondary",
                   textDecoration: "none",
                   fontSize: "0.9rem",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 0.5,
+                  minHeight: 44,
                   "&:hover": { color: "primary.light" },
                 }}
               >
-                GitHub ↗
+                GitHub <ArrowUpRight size={14} />
               </Box>
 
               <Box
@@ -292,10 +302,14 @@ function Hero() {
                   color: "text.secondary",
                   textDecoration: "none",
                   fontSize: "0.9rem",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 0.5,
+                  minHeight: 44,
                   "&:hover": { color: "primary.light" },
                 }}
               >
-                LinkedIn ↗
+                LinkedIn <ArrowUpRight size={14} />
               </Box>
             </Box>
           </Box>

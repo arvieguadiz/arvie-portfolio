@@ -99,10 +99,11 @@ function Contact() {
                 minHeight: 44,
                 display: "inline-flex",
                 alignItems: "center",
+                gap: 0.5,
                 "&:hover": { color: "primary.main" },
               }}
             >
-              GitHub ↗
+              GitHub <ArrowUpRight size={14} />
             </Box>
 
             <Box
@@ -116,10 +117,11 @@ function Contact() {
                 minHeight: 44,
                 display: "inline-flex",
                 alignItems: "center",
+                gap: 0.5,
                 "&:hover": { color: "primary.main" },
               }}
             >
-              LinkedIn ↗
+              LinkedIn <ArrowUpRight size={14} />
             </Box>
           </Box>
         </Box>

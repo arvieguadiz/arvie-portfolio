@@ -1,5 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import type { MouseEvent } from "react";
+import { ArrowUp } from "lucide-react";
 
 function Footer() {
   const handleNavClick = (
@@ -87,10 +88,11 @@ function Footer() {
               minHeight: 44,
               display: "inline-flex",
               alignItems: "center",
+              gap: 0.75,
               "&:hover": { color: "primary.main" },
             }}
           >
-            Back to top ↑
+            Back to top <ArrowUp size={16} />
           </Box>
         </Box>
       </Container>
