@@ -1,11 +1,5 @@
 import { Box, Button, Container, Typography } from "@mui/material";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  ArrowUp,
-  Download,
-  Code2,
-} from "lucide-react";
+import { ArrowDown, ArrowUpRight, Download, Code2 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const technologies = [
