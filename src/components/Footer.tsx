@@ -1,6 +1,27 @@
 import { Box, Container, Typography } from "@mui/material";
+import type { MouseEvent } from "react";
 
 function Footer() {
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    event.preventDefault();
+
+    const section = document.querySelector(href);
+
+    if (!section) return;
+
+    const top = window.scrollY + section.getBoundingClientRect().top - 90;
+
+    window.history.pushState(null, "", href);
+
+    window.scrollTo({
+      top,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Box
       component="footer"
@@ -26,6 +47,7 @@ function Footer() {
             component="a"
             href="#home"
             aria-label="CAB - Back to home"
+            onClick={(event) => handleNavClick(event, "#home")}
             sx={{
               color: "text.primary",
               textDecoration: "none",
@@ -56,6 +78,7 @@ function Footer() {
           <Box
             component="a"
             href="#home"
+            onClick={(event) => handleNavClick(event, "#home")}
             sx={{
               color: "text.secondary",
               textDecoration: "none",
