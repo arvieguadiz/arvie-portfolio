@@ -1,75 +1,111 @@
-# React + TypeScript + Vite
+# Christian Arvie Benito — Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website showcasing my experience, technical skills, selected projects, and professional background as a **Full-Stack Developer**.
 
-Currently, two official plugins are available:
+Built with React and TypeScript, featuring a responsive layout, subtle animations, and a clean, modern interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌐 Live Website
 
-## React Compiler
+**[View My Portfolio](https://arvie-portfolio.arvieguadiz.workers.dev/)**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **Responsive Design** — Optimized for desktop, tablet, and mobile devices.
+- **Modern UI** — Built with Material UI and a custom dark-themed design.
+- **Smooth Animations** — Subtle transitions and scroll-based animations using Framer Motion.
+- **Accessibility** — Includes reduced-motion support and accessible interactive elements.
+- **Project Showcase** — Highlights selected professional, academic, and personal projects.
+- **Professional Experience** — Presents work history, education, and technical expertise.
+- **Resume Download** — Allows visitors to download my latest resume.
+- **SEO Optimized** — Includes metadata, Open Graph information, sitemap, and robots.txt.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Technology         | Purpose                           |
+| ------------------ | --------------------------------- |
+| React              | Frontend library                  |
+| TypeScript         | Type safety                       |
+| Vite               | Development server and build tool |
+| Material UI        | UI components and styling         |
+| Emotion            | CSS-in-JS styling                 |
+| Framer Motion      | Animations and transitions        |
+| Lucide React       | Icons                             |
+| Cloudflare Workers | Deployment and hosting            |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📂 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── assets/          # Images and static assets
+├── components/      # Reusable UI components
+├── data/            # Portfolio content and project data
+├── sections/        # Main portfolio sections
+├── types/           # TypeScript type definitions
+├── App.tsx
+└── main.tsx
 
+public/
+├── favicon.ico
+├── resume.pdf
+├── robots.txt
+└── sitemap.xml
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js
+- npm
+- Git
 
-```
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/arvieguadiz/arvie-portfolio.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd arvie-portfolio
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL provided by Vite in your browser.
+
+## 📦 Available Scripts
+
+| Command           | Description                           |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Starts the development server         |
+| `npm run build`   | Creates an optimized production build |
+| `npm run lint`    | Runs ESLint                           |
+| `npm run preview` | Previews the production build locally |
+
+## 👨‍💻 Author
+
+**Christian Arvie Benito**  
+Full-Stack Developer
+
+- **Portfolio:** [arvie-portfolio.arvieguadiz.workers.dev](https://arvie-portfolio.arvieguadiz.workers.dev/)
+- **GitHub:** [@arvieguadiz](https://github.com/arvieguadiz)
+- **LinkedIn:** [Christian Arvie Benito](https://www.linkedin.com/in/christian-arvie-benito-378399211/)
+- **Email:** [arvieguadiz@gmail.com](mailto:arvieguadiz@gmail.com)
+
+---
+
+If you're interested in collaborating or discussing an opportunity, feel free to reach out!

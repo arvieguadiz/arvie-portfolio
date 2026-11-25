@@ -92,7 +92,7 @@ const projects: Project[] = [
     category: "Human Resources Application",
     group: "Professional",
     organization: "The Penbrothers International, Inc.",
-    featured: true,
+    // featured: true,
     description:
       "An in-house platform that allows employees to securely access payslips, file leaves, monitor leave balances, and read company announcements. HR users can manage employee information, review leave requests, and publish announcements.",
     technologies: [
