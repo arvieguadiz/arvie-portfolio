@@ -23,24 +23,28 @@ Built with React and TypeScript, featuring a responsive layout, subtle animation
 
 | Technology         | Purpose                           |
 | ------------------ | --------------------------------- |
-| React              | Frontend library                  |
-| TypeScript         | Type safety                       |
-| Vite               | Development server and build tool |
+| React 19           | Frontend library                  |
+| TypeScript 6       | Type safety                       |
+| Vite 8             | Development server and build tool |
 | Material UI        | UI components and styling         |
 | Emotion            | CSS-in-JS styling                 |
 | Framer Motion      | Animations and transitions        |
 | Lucide React       | Icons                             |
+| MUI Icons          | Additional Material icons         |
+| React Router       | Client-side routing               |
 | Cloudflare Workers | Deployment and hosting            |
 
 ## 📂 Project Structure
 
 ```text
 src/
-├── assets/          # Images and static assets
-├── components/      # Reusable UI components
-├── data/            # Portfolio content and project data
-├── sections/        # Main portfolio sections
-├── types/           # TypeScript type definitions
+├── assets/              # Images and other assets
+├── components/          # Shared and reusable components
+├── sections/            # Main portfolio sections
+│   ├── components/      # Section-specific components
+│   ├── data/            # Portfolio content and project data
+│   └── types/           # TypeScript type definitions
+├── theme/               # Material UI theme configuration
 ├── App.tsx
 └── main.tsx
 
@@ -89,12 +93,12 @@ public/
 
 ## 📦 Available Scripts
 
-| Command           | Description                           |
-| ----------------- | ------------------------------------- |
-| `npm run dev`     | Starts the development server         |
-| `npm run build`   | Creates an optimized production build |
-| `npm run lint`    | Runs ESLint                           |
-| `npm run preview` | Previews the production build locally |
+| Command           | Description                                           |
+| ----------------- | ----------------------------------------------------- |
+| `npm run dev`     | Starts the development server                         |
+| `npm run build`   | Runs TypeScript checks and creates a production build |
+| `npm run lint`    | Runs ESLint                                           |
+| `npm run preview` | Previews the production build locally                 |
 
 ## 👨‍💻 Author
 
