@@ -4,6 +4,16 @@ A personal portfolio website showcasing my experience, technical skills, selecte
 
 Built with React and TypeScript, featuring a responsive layout, subtle animations, and a clean, modern interface.
 
+## 🖥️ Portfolio Preview
+
+### Desktop
+
+![Portfolio Desktop Preview](public/images/portfolio_desktop.png)
+
+### Mobile
+
+![Portfolio Mobile Preview](public/images/portfolio_mobile.png)
+
 ## 🌐 Live Website
 
 **[View My Portfolio](https://arvie-portfolio.arvieguadiz.workers.dev/)**
