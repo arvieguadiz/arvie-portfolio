@@ -154,7 +154,8 @@ function Projects() {
           }}
         >
           <Typography variant="body2" color="text.secondary">
-            Showcasing 11 professional, academic, and personal projects
+            Showcasing {projects.length} professional, academic, and personal
+            projects
           </Typography>
           <ArrowUpRight size={16} color="#5B8CFF" />
         </Box>

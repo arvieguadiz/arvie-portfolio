@@ -14,6 +14,24 @@ const technologies = [
 function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
+  const handleScrollClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    const target = event.currentTarget.getAttribute("href");
+    const section = target ? document.querySelector(target) : null;
+
+    if (!section) return;
+
+    const top = window.scrollY + section.getBoundingClientRect().top - 90;
+
+    window.history.pushState(null, "", "#about");
+
+    window.scrollTo({
+      top,
+      behavior: shouldReduceMotion ? "instant" : "smooth",
+    });
+  };
+
   return (
     <Box
       id="home"
@@ -209,6 +227,7 @@ function Hero() {
               <Button
                 component="a"
                 href="#projects"
+                onClick={handleScrollClick}
                 variant="contained"
                 color="primary"
                 sx={{
@@ -225,6 +244,7 @@ function Hero() {
               <Button
                 component="a"
                 href="#contact"
+                onClick={handleScrollClick}
                 variant="outlined"
                 color="inherit"
                 sx={{
@@ -666,6 +686,7 @@ function Hero() {
         <Box
           component="a"
           href="#about"
+          onClick={handleScrollClick}
           sx={{
             position: "absolute",
             bottom: 24,
